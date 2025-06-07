@@ -79,8 +79,6 @@ Contains inodes of different files with important metadata.
 
 ### How File Reading Works
 
-```mermaid
-graph TD
     A[read() system call with FD] --> B[Lookup FD in process FD table]
     B --> C[Get file table entry]
     C --> D[Get current offset and inode pointer]
@@ -131,8 +129,6 @@ For `/home/user/data.txt`, the kernel:
 ## Complete File Access Process
 
 ### Phase 1: Path Resolution
-```mermaid
-graph TD
     A[open("/home/user/notes.txt", O_RDONLY)] --> B[Start at root inode #2]
     B --> C[Look in root directory for 'home']
     C --> D[Find 'home' → inode #45]
