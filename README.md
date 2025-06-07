@@ -204,3 +204,4 @@ When you use `read(fd, ...)` or `write(fd, ...)`, the OS:
 - **Path Resolution**: Multi-step process to find files by traversing directory structure
 
 This architecture provides efficient, secure, and organized file access while maintaining process isolation and data integrity.
+link for notion https://www.notion.so/File-Systems-208a8210e16e80e9b2adccacb1fbc13a?source=copy_link
