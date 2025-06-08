@@ -80,14 +80,14 @@ Contains inodes of different files with important metadata.
 ### How File Reading Works
 
 ```mermaid
-graph TD
-    A[read() system call with FD] --> B[Lookup FD in process FD table]
-    B --> C[Get file table entry]
-    C --> D[Get current offset and inode pointer]
-    D --> E[Lookup inode table for metadata]
-    E --> F[Calculate physical disk block from offset]
-    F --> G[Read data from disk block]
-    G --> H[Update offset in file table]
+graph TD;
+    A[read() system call with FD] --> B[Lookup FD in process FD table];
+    B --> C[Get file table entry];
+    C --> D[Get current offset and inode pointer];
+    D --> E[Lookup inode table for metadata];
+    E --> F[Calculate physical disk block from offset];
+    F --> G[Read data from disk block];
+    G --> H[Update offset in file table];
 ```
 
 ### Understanding Offset vs Inode
@@ -132,14 +132,14 @@ For `/home/user/data.txt`, the kernel:
 
 ### Phase 1: Path Resolution
 ```mermaid
-graph TD
-    A[open("/home/user/notes.txt", O_RDONLY)] --> B[Start at root inode #2]
-    B --> C[Look in root directory for 'home']
-    C --> D[Find 'home' → inode #45]
-    D --> E[Look in home directory for 'user']
-    E --> F[Find 'user' → inode #76]
-    F --> G[Look in user directory for 'notes.txt']
-    G --> H[Find 'notes.txt' → inode #123]
+graph TD;
+    A[open("/home/user/notes.txt", O_RDONLY)] --> B[Start at root inode #2];
+    B --> C[Look in root directory for 'home'];
+    C --> D[Find 'home' → inode #45];
+    D --> E[Look in home directory for 'user'];
+    E --> F[Find 'user' → inode #76];
+    F --> G[Look in user directory for 'notes.txt'];
+    G --> H[Find 'notes.txt' → inode #123];
 ```
 
 **Step-by-step:**
@@ -170,18 +170,18 @@ Once we found **inode #123**, the OS:
 ### Complete Architecture Diagram
 
 ```mermaid
-graph TD
-    A[Process] --> B[File Descriptor Table]
-    B --> C[FD 3]
-    C --> D[File Table Entry #42]
-    D --> E[Offset: Current Position]
-    D --> F[Access Mode: O_RDONLY]
-    D --> G[Inode Pointer]
-    G --> H[Inode #123]
-    H --> I[File Metadata]
-    H --> J[Data Block Pointers]
-    J --> K[Physical Disk Blocks]
-    K --> L[Actual File Data]
+graph TD;
+    A[Process] --> B[File Descriptor Table];
+    B --> C[FD 3];
+    C --> D[File Table Entry #42];
+    D --> E[Offset: Current Position];
+    D --> F[Access Mode: O_RDONLY];
+    D --> G[Inode Pointer];
+    G --> H[Inode #123];
+    H --> I[File Metadata];
+    H --> J[Data Block Pointers];
+    J --> K[Physical Disk Blocks];
+    K --> L[Actual File Data];
 ```
 
 ### File Operation Summary
@@ -204,3 +204,9 @@ When you use `read(fd, ...)` or `write(fd, ...)`, the OS:
 - **Path Resolution**: Multi-step process to find files by traversing directory structure
 
 This architecture provides efficient, secure, and organized file access while maintaining process isolation and data integrity.
+
+
+## References for Code
+- [fnctl.h - fcntl.h - file control options](https://pubs.opengroup.org/onlinepubs/007904875/basedefs/fcntl.h.html)
+- [fcntl - file control
+](https://pubs.opengroup.org/onlinepubs/007904875/functions/fcntl.html)
