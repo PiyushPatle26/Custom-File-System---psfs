@@ -170,18 +170,19 @@ Once we found **inode #123**, the OS:
 ### Complete Architecture Diagram
 
 ```mermaid
-graph TD;
-    A[Process] --> B[File Descriptor Table];
-    B --> C[FD 3];
-    C --> D[File Table Entry #42];
-    D --> E[Offset: Current Position];
-    D --> F[Access Mode: O_RDONLY];
-    D --> G[Inode Pointer];
-    G --> H[Inode #123];
-    H --> I[File Metadata];
-    H --> J[Data Block Pointers];
-    J --> K[Physical Disk Blocks];
-    K --> L[Actual File Data];
+graph TD
+    A[Process] --> B[File Descriptor Table]
+    B --> C[FD 3]
+    C --> D[File Table Entry #42]
+    D --> E[Offset: Current Position]
+    D --> F[Access Mode: O_RDONLY]
+    D --> G[Inode Pointer]
+    G --> H[Inode #123]
+    H --> I[File Metadata]
+    H --> J[Data Block Pointers]
+    J --> K[Physical Disk Blocks]
+    K --> L[Actual File Data]
+
 ```
 
 ### File Operation Summary
@@ -207,6 +208,11 @@ This architecture provides efficient, secure, and organized file access while ma
 
 
 ## References for Code
-- [fnctl.h - fcntl.h - file control options](https://pubs.opengroup.org/onlinepubs/007904875/basedefs/fcntl.h.html)
+- [fnctl.h - file control options](https://pubs.opengroup.org/onlinepubs/007904875/basedefs/fcntl.h.html)
 - [fcntl - file control
 ](https://pubs.opengroup.org/onlinepubs/007904875/functions/fcntl.html)
+- [sys/stat.h - data returned by the stat() function](https://pubs.opengroup.org/onlinepubs/007904875/basedefs/sys/stat.h.html)
+- [stat - get file status](https://pubs.opengroup.org/onlinepubs/007904875/functions/stat.html)
+- [open(2)](https://man7.org/linux/man-pages/man2/open.2.html)
+- [write(2)](https://man7.org/linux/man-pages/man2/write.2.html)
+- 
