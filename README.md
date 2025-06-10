@@ -86,8 +86,6 @@ Contains inodes of different files with important metadata.
     E --> F[Calculate physical disk block from offset]
     F --> G[Read data from disk block]
     G --> H[Update offset in file table]
-```
-
 ### Understanding Offset vs Inode
 
 #### ✅ **Offset**:
@@ -136,7 +134,8 @@ For `/home/user/data.txt`, the kernel:
     E --> F[Find 'user' → inode #76]
     F --> G[Look in user directory for 'notes.txt']
     G --> H[Find 'notes.txt' → inode #123]
-```
+
+
 
 **Step-by-step:**
 1. Start at `/` → inode #2 (root)
@@ -178,6 +177,7 @@ graph TD
     H --> J[Data Block Pointers]
     J --> K[Physical Disk Blocks]
     K --> L[Actual File Data]
+
 ```
 
 ### File Operation Summary
@@ -201,3 +201,14 @@ When you use `read(fd, ...)` or `write(fd, ...)`, the OS:
 
 This architecture provides efficient, secure, and organized file access while maintaining process isolation and data integrity.
 link for notion https://www.notion.so/File-Systems-208a8210e16e80e9b2adccacb1fbc13a?source=copy_link
+
+
+## References for Code
+- [fnctl.h - file control options](https://pubs.opengroup.org/onlinepubs/007904875/basedefs/fcntl.h.html)
+- [fcntl - file control
+](https://pubs.opengroup.org/onlinepubs/007904875/functions/fcntl.html)
+- [sys/stat.h - data returned by the stat() function](https://pubs.opengroup.org/onlinepubs/007904875/basedefs/sys/stat.h.html)
+- [stat - get file status](https://pubs.opengroup.org/onlinepubs/007904875/functions/stat.html)
+- [open(2)](https://man7.org/linux/man-pages/man2/open.2.html)
+- [write(2)](https://man7.org/linux/man-pages/man2/write.2.html)
+- 
