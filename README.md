@@ -79,17 +79,13 @@ Contains inodes of different files with important metadata.
 
 ### How File Reading Works
 
-```mermaid
-graph TD;
-    A[read() system call with FD] --> B[Lookup FD in process FD table];
-    B --> C[Get file table entry];
-    C --> D[Get current offset and inode pointer];
-    D --> E[Lookup inode table for metadata];
-    E --> F[Calculate physical disk block from offset];
-    F --> G[Read data from disk block];
-    G --> H[Update offset in file table];
-```
-
+    A[read() system call with FD] --> B[Lookup FD in process FD table]
+    B --> C[Get file table entry]
+    C --> D[Get current offset and inode pointer]
+    D --> E[Lookup inode table for metadata]
+    E --> F[Calculate physical disk block from offset]
+    F --> G[Read data from disk block]
+    G --> H[Update offset in file table]
 ### Understanding Offset vs Inode
 
 #### ✅ **Offset**:
@@ -131,16 +127,15 @@ For `/home/user/data.txt`, the kernel:
 ## Complete File Access Process
 
 ### Phase 1: Path Resolution
-```mermaid
-graph TD;
-    A[open("/home/user/notes.txt", O_RDONLY)] --> B[Start at root inode #2];
-    B --> C[Look in root directory for 'home'];
-    C --> D[Find 'home' → inode #45];
-    D --> E[Look in home directory for 'user'];
-    E --> F[Find 'user' → inode #76];
-    F --> G[Look in user directory for 'notes.txt'];
-    G --> H[Find 'notes.txt' → inode #123];
-```
+    A[open("/home/user/notes.txt", O_RDONLY)] --> B[Start at root inode #2]
+    B --> C[Look in root directory for 'home']
+    C --> D[Find 'home' → inode #45]
+    D --> E[Look in home directory for 'user']
+    E --> F[Find 'user' → inode #76]
+    F --> G[Look in user directory for 'notes.txt']
+    G --> H[Find 'notes.txt' → inode #123]
+
+
 
 **Step-by-step:**
 1. Start at `/` → inode #2 (root)
@@ -205,6 +200,7 @@ When you use `read(fd, ...)` or `write(fd, ...)`, the OS:
 - **Path Resolution**: Multi-step process to find files by traversing directory structure
 
 This architecture provides efficient, secure, and organized file access while maintaining process isolation and data integrity.
+link for notion https://www.notion.so/File-Systems-208a8210e16e80e9b2adccacb1fbc13a?source=copy_link
 
 
 ## References for Code
